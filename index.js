@@ -43,8 +43,14 @@ MyPromise.prototype.then = function(onFullfilled, onRejected) {
       // }catch(e){
       //   reject(e);
       // }
-        var x = onFullfilled(self.value);
-        resolvePromise(promise2,x,resolve,reject);
+      setTimeout(function(){
+        try{
+          var x = onFullfilled(self.value);
+          resolvePromise(promise2,x,resolve,reject);
+        }catch(e){
+          reject(e);
+        }
+      });
     });
   }
   if(self.status === 'rejected') {
@@ -56,8 +62,14 @@ MyPromise.prototype.then = function(onFullfilled, onRejected) {
       // }catch(e){
       //   reject(e);
       // }
-      var x = onRejected(self.reason);
-      resolvePromise(promise2,x,resolve,reject);
+      setTimeout(function(){
+        try{
+          var x = onRejected(self.reason);
+          resolvePromise(promise2,x,resolve,reject);
+        }catch(e){
+          reject(e);
+        }
+      });
     });
   }
   if (self.status === 'pending') {
@@ -76,8 +88,14 @@ MyPromise.prototype.then = function(onFullfilled, onRejected) {
         // }catch(e){
         //   reject(e);
         // }
-        var x = onFullfilled(self.value);
-        resolvePromise(promise2,x,resolve,reject);
+        setTimeout(function(){
+          try{
+            var x = onFullfilled(self.value);
+            resolvePromise(promise2,x,resolve,reject);
+          }catch(e){
+            reject(e);
+          }
+        });
       });
       self.onRejectedCallbacks.push(function(){
         // try{
@@ -86,8 +104,14 @@ MyPromise.prototype.then = function(onFullfilled, onRejected) {
         // }catch(e){
         //   reject(e);
         // }
-        var x = onRejected(self.reason);
-        resolvePromise(promise2,x,resolve,reject);
+        setTimeout(function(){
+          try{
+            var x = onRejected(self.reason);
+            resolvePromise(promise2,x,resolve,reject);
+          }catch(e){
+            reject(e);
+          }
+        });
       });
     });
   }
